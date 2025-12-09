@@ -48,4 +48,6 @@ def post_like(request, pk):
         post.likes.remove(request.user)
     else:
         post.likes.add(request.user)
-    return redirect('post_list')
+    
+    # Redirect back to the previous page
+    return redirect(request.META.get('HTTP_REFERER', 'post_list'))
