@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robustus Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mandarin: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%);
+        }
+
+        .post-card {
+            transition: all 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+
+<body class="gradient-bg min-h-screen">
+    <!-- Header -->
+    <header class="bg-gray-800/50 backdrop-blur-sm border-b border-gray-700 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between">
+                <h1 class="text-3xl font-bold">
+                    <a href="/"
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-mandarin-400 to-mandarin-600 hover:from-mandarin-300 hover:to-mandarin-500 transition-all duration-300">
+                        Robustus Blog
+                    </a>
+                </h1>
+                <div class="flex items-center gap-4">
+                    <span class="text-gray-400 text-sm">Django Blog Project</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-gray-700 bg-gray-800/30 backdrop-blur-sm">
+        <div class="max-w-4xl mx-auto px-6 py-8">
+            <div class="text-center text-gray-400 text-sm">
+                <p class="mb-2">
+                    Made with
+                    <span class="text-mandarin-400">❤️</span>
+                    using Django
+                </p>
+                <p class="text-gray-500">
+                    © 2025 Robustus Blog. All rights reserved xD
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
