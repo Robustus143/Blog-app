@@ -41,13 +41,3 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
-@login_required
-def post_like(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    if request.user in post.likes.all():
-        post.likes.remove(request.user)
-    else:
-        post.likes.add(request.user)
-    
-    # Redirect back to the previous page
-    return redirect(request.META.get('HTTP_REFERER', 'post_list'))
