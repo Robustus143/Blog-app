@@ -1,9 +1,60 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<h1>New post</h1>
-<form method="POST" class="post-form">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="save btn btn-default">Save</button>
-</form>
+<div class="max-w-2xl mx-auto">
+    <div class="bg-gray-800/60 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-700 p-8">
+        <h1 class="text-3xl font-bold text-white mb-6">
+            {% if form.instance.pk %}Edit Post{% else %}New Post{% endif %}
+        </h1>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Title Field -->
+            <div>
+                <label for="id_title" class="block text-sm font-medium text-gray-300 mb-2">
+                    Title
+                </label>
+                <input type="text" name="title" id="id_title" value="{{ form.title.value|default:'' }}" required
+                    class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-mandarin-500 focus:border-transparent transition-all"
+                    placeholder="Enter post title...">
+                {% if form.title.errors %}
+                <p class="mt-2 text-sm text-red-400">{{ form.title.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Text Field -->
+            <div>
+                <label for="id_text" class="block text-sm font-medium text-gray-300 mb-2">
+                    Content
+                </label>
+                <textarea name="text" id="id_text" rows="12" required
+                    class="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-mandarin-500 focus:border-transparent transition-all resize-none"
+                    placeholder="Write your post content...">{{ form.text.value|default:'' }}</textarea>
+                {% if form.text.errors %}
+                <p class="mt-2 text-sm text-red-400">{{ form.text.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex items-center gap-4 pt-4">
+                <button type="submit"
+                    class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-mandarin-500 hover:bg-mandarin-600 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-mandarin-500/50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Save Post
+                </button>
+                <a href="/"
+                    class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition-all duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
