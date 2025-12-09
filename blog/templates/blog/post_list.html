@@ -1,11 +1,11 @@
 ```
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robustus Blog - Мій особистий блог</title>
+    <title>Robustus Blog</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <script>
@@ -75,15 +75,16 @@
         <!-- Welcome Section -->
         <div class="mb-12 text-center">
             <h2 class="text-4xl font-bold text-white mb-4">
-                Ласкаво просимо до мого блогу! 👋
+                Welcome to my blog!
             </h2>
             <p class="text-gray-300 text-lg">
-                Тут я ділюся своїми думками та досвідом у веб-розробці
+                Here I share my thoughts and experience in web development
             </p>
         </div>
 
         <!-- Blog Posts -->
         <div class="space-y-6">
+            {% for post in posts %}
             <!-- Post Card -->
             <article
                 class="post-card bg-gray-800/60 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-700 overflow-hidden hover:shadow-2xl hover:shadow-mandarin-500/10 hover:border-mandarin-500/50">
@@ -97,7 +98,7 @@
                                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                                     clip-rule="evenodd" />
                             </svg>
-                            09.12.2025, 18:02
+                            {{ post.published_date }}
                         </span>
                         <span
                             class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-700/50 text-gray-300 border border-gray-600">
@@ -109,7 +110,7 @@
                     <h2 class="text-2xl font-bold mb-4">
                         <a href=""
                             class="text-white hover:text-mandarin-400 transition-colors duration-200 flex items-center gap-2 group">
-                            My First Post
+                            {{ post.title }}
                             <svg class="w-5 h-5 opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all duration-200"
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -120,21 +121,11 @@
 
                     <!-- Post Content -->
                     <p class="text-gray-300 leading-relaxed mb-6">
-                        This is my first Django project. I hope I will learn fast and create amazing web applications!
-                        🚀
+                        {{ post.text|linebreaksbr }}
                     </p>
 
                     <!-- Post Footer -->
-                    <div class="flex items-center justify-between pt-4 border-t border-gray-700">
-                        <a href=""
-                            class="inline-flex items-center text-mandarin-400 hover:text-mandarin-300 font-medium text-sm transition-colors duration-200 group">
-                            Читати далі
-                            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
+                    <div class="flex items-center justify-end pt-4 border-t border-gray-700">
                         <div class="flex items-center gap-4 text-gray-400 text-sm">
                             <span class="flex items-center gap-1">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,8 +147,7 @@
                     </div>
                 </div>
             </article>
-
-            <!-- You can add more posts here -->
+            {% endfor %}
         </div>
     </main>
 
@@ -166,12 +156,12 @@
         <div class="max-w-4xl mx-auto px-6 py-8">
             <div class="text-center text-gray-400 text-sm">
                 <p class="mb-2">
-                    Створено з
+                    Made with
                     <span class="text-mandarin-400">❤️</span>
-                    за допомогою Django
+                    using Django
                 </p>
                 <p class="text-gray-500">
-                    © 2025 Robustus Blog. Всі права захищені.
+                    © 2025 Robustus Blog. All rights reserved xD
                 </p>
             </div>
         </div>
